@@ -1,6 +1,8 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
+import { copyFileSync, watchFile } from "fs";
+import { resolve } from "path";
 
 const banner =
 `/*
@@ -10,12 +12,18 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = (process.argv[2] === "production");
+const cssSrc = resolve("src/styles.css");
+const cssDest = resolve("styles.css");
+
+function copyCss() {
+    copyFileSync(cssSrc, cssDest);
+}
 
 const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
-	entryPoints: ["main.ts"],
+	entryPoints: ["src/main.ts"],
 	bundle: true,
 	external: [
 		"obsidian",
@@ -43,7 +51,14 @@ const context = await esbuild.context({
 
 if (prod) {
 	await context.rebuild();
+    copyCss();
+    await context.dispose();
 	process.exit(0);
 } else {
 	await context.watch();
+    copyCss();
+
+    watchFile(cssSrc, { interval: 100 }, () => {
+        copyCss();
+    })
 }
