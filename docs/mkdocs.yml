@@ -1,0 +1,96 @@
+site_name: Custom Tab Headers
+# site_description:
+# site_url:
+repo_url: https://github.com/Structure-Savvy/obsidian-custom-tab-headers
+repo_name: Structure-Savvy/obsidian-custom-tab-headers
+
+theme:
+  name: material
+  language: en
+  # logo:
+  # favicon:
+
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+    - toc.follow
+    - navigation.path
+    - navigation.footer
+    - content.code.copy
+  
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      auto_title: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+    - stylesheets/custom.css
+
+nav:
+  - Introduction: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Usage: getting-started/usage.md
+  - Examples:
+      - Overview: examples/overview.md
+      - Basic Examples: examples/basic.md
+      - Advanced Examples: examples/advanced.md
+  - Reference:
+    - Overview: reference/overview.md
+    - Settings: reference/settings.md
+    - Sample Generated HTML: reference/sample-generated-html.md
+  - Help:
+    - FAQ: help/FAQ.md
+    - Troubleshooting: help/troubleshooting.md
+    - Development: help/development.md

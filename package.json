@@ -1,5 +1,5 @@
 {
-    "name": "custom-tab-header",
+    "name": "obsidian-custom-tab-header",
     "version": "1.0.0",
     "description": "Custom tab headers for Obsidian.md (https://obsidian.md).",
     "main": "main.js",
