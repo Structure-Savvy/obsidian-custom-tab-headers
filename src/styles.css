@@ -23,6 +23,7 @@
 
 .custom-tab-header-wrapper {
     & .custom-tab-header-title-main {
+        display: inline-block;
         color: var(--main-title-color);
 
         & .icon {
@@ -60,6 +61,7 @@
     }
 
     .custom-tab-header-title-secondary {
+        display: inline-block;
         font-size: 0.75em;
         margin-left: 0.5em;
         color: var(--secondary-title-color);

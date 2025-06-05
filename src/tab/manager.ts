@@ -244,29 +244,29 @@ export class TabManager {
             const document = leaf.getContainer().doc;
             tabtitleEl.textContent = '';
 
-            const spanWrapper = document.createElement('span');
-            spanWrapper.className = 'custom-tab-header-wrapper';
+            const wrapper = document.createElement('div');
+            wrapper.className = 'custom-tab-header-wrapper';
 
-            const spanMain = this.createTitleSpan(document, 'main', data.mainTitle, data.mainTitleClass);
-            spanWrapper.appendChild(spanMain);
+            const mainContainer = this.createTitleContainer(document, 'main', data.mainTitle, data.mainTitleClass);
+            wrapper.appendChild(mainContainer);
 
             if (data.secondaryTitle) {
-                const spanSecondary = this.createTitleSpan(document, 'secondary', data.secondaryTitle, data.secondaryTitleClass);
-                spanWrapper.appendChild(spanSecondary);
+                const secondaryContainer = this.createTitleContainer(document, 'secondary', data.secondaryTitle, data.secondaryTitleClass);
+                wrapper.appendChild(secondaryContainer);
             }
 
-            tabtitleEl.appendChild(spanWrapper);
+            tabtitleEl.appendChild(wrapper);
         } else {
             if (tabHeader.getAttribute(tooltipAttr)) {
                 tabHeader.setAttribute(tooltipAttr, data.tooltip);
             }
 
-            tabtitleEl.innerHTML = data.mainTitle;
+            tabtitleEl.textContent = data.mainTitle;
         }
     }
 
-    private createTitleSpan(doc: Document, type: 'main' | 'secondary', content: string, customClass: string): HTMLSpanElement {
-        const outer = doc.createElement('span');
+    private createTitleContainer(doc: Document, type: 'main' | 'secondary', content: string, customClass: string): HTMLDivElement {
+        const outer = doc.createElement('div');
         outer.className = `custom-tab-header-title-${type}`;
 
         const classes = customClass?.split(/\s+/).filter(cls => cls.trim()) ?? [];
@@ -278,7 +278,7 @@ export class TabManager {
 
         const innerContent = doc.createElement('span');
         innerContent.className = 'content';
-        innerContent.innerHTML = content;
+        innerContent.textContent = content;
         outer.appendChild(innerContent);
 
         return outer;
